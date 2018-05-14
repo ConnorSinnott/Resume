@@ -1,5 +1,43 @@
+$margin: 0.5in;
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+}
+
 .resume-container {
   width: 8.5in;
   height: 11in;
   background: white;
+}
+
+.header {
+  text-align: center;
+}
+
+.contact {
+  padding-top: $margin;
+  padding-right: $margin;
+  text-align: right;
+}
+
+.section {
+  padding-left: $margin;
+  padding-right: $margin;
+  margin-top: 0.5in;
+}
+
+.section * {
+  margin-top: 0.1in;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
 }
