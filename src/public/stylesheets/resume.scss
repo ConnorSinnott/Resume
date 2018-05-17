@@ -15,7 +15,9 @@ body {
 }
 
 .header {
+  padding-top: 0.2in;
   text-align: center;
+  clear: left;
 }
 
 .contact {
@@ -24,14 +26,19 @@ body {
   text-align: right;
 }
 
+.connect {
+  padding-top: $margin;
+  padding-left: $margin;
+}
+
 .section {
   padding-left: $margin;
   padding-right: $margin;
-  margin-top: 0.5in;
+  margin-top: 0.2in;
 }
 
-.section * {
-  margin-top: 0.1in;
+.title {
+  text-decoration: underline;
 }
 
 .right {
@@ -40,4 +47,25 @@ body {
 
 .left {
   float: left;
+}
+
+.summary {
+  clear: left;
+  margin-left: $margin;
+  padding-top: 0.1in;
+}
+
+.notable li {
+  display: inline;
+}
+
+.notable li:not(:first-child) {
+  margin-left: 10px;
+}
+
+.notable {
+  display: inline-block;
+  background: #e2e2e2;
+  border-radius: 20px;
+  padding-right: 40px;
 }

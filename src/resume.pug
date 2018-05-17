@@ -1,7 +1,7 @@
 mixin resume()
     link(rel='stylesheet' href='public/stylesheets/resume.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web')
-    .resume-container
+   .resume-container
         .contact
             p (425) 626-8770
             p ConnorSinnott@gmail.com
@@ -10,14 +10,59 @@ mixin resume()
             h3.subtitle Express | React | Android | SpringBoot
         .section.project
             .title Project Experience
-                .project
-                    h4.left Eastside Fire & Rescue ICS Form Manager
-                    h4.right Jan 2018 - Jun 2018
-                    br
-                .project
-                    h4.left BlackBox - CodeDays2017
-                    h4.right Feb 2017
+            .project
+                h4.left Eastside Fire & Rescue ICS Form Manager
+                h4.right Jan 2018 - Jun 2018
+                .summary
+                    p An overhaul of Eastside Fire & Rescue's Incident Command System form software.
+                    ul.notable
+                        li • Electron
+                        li • Electron-Builder
+                        li • React
+                        li • Node.js
+                        li • Pug
+                        li • Amazon S3
+            .project
+                h4.left BlackBox - CodeDay2017
+                h4.right Feb 18 2017 - Feb 19 2017
+                .summary
+                    p Winner of "Best Application" from CodeDay2017. A "dead man's switch" concept on Android.
+                    ul.notable
+                        li • Express
+                        li • Android
+                        li • Node.js
+                        li • CentOS
+                        li • Mongo
+        .section.work
+            .title Work Experience
+            .job
+                h4.left CodeCoach - TheCoderSchool
+                h4.right Jan 2018 - Present
+                .summary
+                    ul
+                        li Instructor of Python, JavaScript, and Scratch
+                        li Rewrote the curriculum for new students so that the program is more accessible
+            .job
+                h4.left Technical Specialist - REI
+                h4.right Jun 2015 - Feb 2018
+                .summary
+                    ul
+                        li
+        .section.hobbies
+            .title Hobbies
+            .hobby
+                h4.left Bellevue College Computer Science Club
+                h4.right June 2017 - Present
+                .summary
+                    p test
+            .hobby
+                h4.left CascadeMTB
+                h4.right May 2016 - Present
+                .summary
+                    p test
         .section.education
             .title Education
-            h4.left Information Systems: Application Development - Bachelors Degree
-            h4.right June 2018
+                .education
+                    h4.left Information Systems: Application Development - Bachelors Degree
+                    h4.right June 2018
+
