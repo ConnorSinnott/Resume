@@ -1,7 +1,7 @@
 mixin resume()
     link(rel='stylesheet' href='public/stylesheets/resume.css')
     link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Titillium+Web')
-   .resume-container
+    .resume-container
         .contact
             p (425) 626-8770
             p ConnorSinnott@gmail.com
@@ -17,9 +17,9 @@ mixin resume()
                     p An overhaul of Eastside Fire & Rescue's Incident Command System form software.
                     ul.notable
                         li • Electron
-                        li • Electron-Builder
-                        li • React
+                        li • React + Redux
                         li • Node.js
+                        li • Jest
                         li • Pug
                         li • Amazon S3
             .project
@@ -33,6 +33,17 @@ mixin resume()
                         li • Node.js
                         li • CentOS
                         li • Mongo
+                        li • Amazon EC2, Route 53
+            .project
+                h4.left 123Launch
+                h4.right May 2016 - Jun 2016
+                .summary
+                    p "Dial pad" homescreen launcher widget for Android phones. Available on Google Play.
+                    ul.notable
+                        li • Android
+                        li • Gradle
+                        li • Google Play Services
+                        li • EventBus
         .section.work
             .title Work Experience
             .job
@@ -40,29 +51,41 @@ mixin resume()
                 h4.right Jan 2018 - Present
                 .summary
                     ul
-                        li Instructor of Python, JavaScript, and Scratch
-                        li Rewrote the curriculum for new students so that the program is more accessible
+                        li Instructor of Python, JavaScript, and Scratch.
+                        li Rewrote the curriculum for new students to make the program more accessible.
+                        li Onboarded and trained new coaches.
             .job
                 h4.left Technical Specialist - REI
                 h4.right Jun 2015 - Feb 2018
                 .summary
                     ul
-                        li
+                        li One of seven mechanics moved to new Bellevue store to establish proper routine.
+                        li Very forward facing and customer accessible; first store to test 'open shop' with no walls.
+                        li Outdoor Programs and Outreach Instructor. Taught bike maintenance and ski repair classes.
         .section.hobbies
             .title Hobbies
             .hobby
                 h4.left Bellevue College Computer Science Club
                 h4.right June 2017 - Present
                 .summary
-                    p test
+                    p Elected president of Bellevue College's Computer Science Club
+                br
             .hobby
-                h4.left CascadeMTB
+                h4.left Cascade Mountain Biking Community
                 h4.right May 2016 - Present
                 .summary
-                    p test
+                    p Co-founder of Washington's most active mountain biking community
         .section.education
             .title Education
-                .education
-                    h4.left Information Systems: Application Development - Bachelors Degree
-                    h4.right June 2018
+                .ed
+                    h4.left Information Systems: Application Development - Bachelors Degree (3.8 GPA)
+                    h4.right Jun 2018
+                    br
+                .ed
+                    h4.left Phi Theta Kappa - Honors Society
+                    h4.right May 2016
+                    br
+                .ed
+                    h4.left Udacity - Android Development Nanodegree
+                    h4.right Aug 2016
 
