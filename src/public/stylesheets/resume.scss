@@ -16,11 +16,17 @@ body {
 
 .header {
   text-align: center;
-  clear: left;
+  clear: both;
+  margin-top: 0;
+}
+
+.header h1 {
+  margin-top: 0;
+  padding-top:0;
 }
 
 .contact {
-  padding-top: 0.2in;
+  padding-top: 0.1in;
   padding-left: $margin;
   padding-right: $margin;
   text-align: right;
@@ -51,11 +57,11 @@ body {
 .summary {
   clear: left;
   margin-left: $margin;
-  padding-top: 0.1in;
+  padding-top: 12px;
 }
 
 ul {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .notable li {
@@ -75,4 +81,11 @@ ul {
 
 .education {
   padding-top: 8px;
+}
+
+.bio {
+  text-align: center;
+  font-size: 0.8em;
+  margin-left: $margin;
+  margin-right: $margin;
 }
