@@ -4,88 +4,101 @@ const reload = require('reload');
 const pug = require('pug');
 const path = require('path');
 const sass = require('node-sass');
+const watch = require('node-watch');
 
-const arg = process.argv[2];
+const PROCESS_ARGS = process.argv.slice(2) || null;
+switch (PROCESS_ARGS[0]) {
+    case 'render': {
+        render();
+        break;
+    }
+    case 'develop': {
+        develop();
+        break;
+    }
+    case 'deploy': {
+        break;
+    }
+    default: {
+        console.log('Usage:');
+        console.log('- node main.js render');
+        console.log('   Perform a complete render of the website');
+        console.log('   Output in ./build folder');
+        console.log('- node main.js develop');
+        console.log('   Launches a development server on port 3000');
+        console.log('   Watches for file changes and re-renders the website');
+        console.log('   (Designed for use with JetBrains IDEs)');
+        break;
+    }
+}
 
-if (!arg) {
+/**
+ * Do a complete render of the website
+ * Overwrites the entire build folder
+ */
+function render() {
 
-    const app = express();
-    app.use('/', express.static('build'));
-    app.listen(3000);
-
-    const reloadServer = reload(app);
-
-    console.log('Development server running');
-    fs.watch('./src', (eventType, filename) => {
-
-        if (eventType === 'rename' && path.extname(filename) === '.pug') {
-            const files = fs.readdirSync('./src');
-            files.forEach(f => {
-                if (path.extname(f) === '.pug') {
-                    console.log(f);
-                    const result = pug.renderFile(`./src/${f}`);
-                    fs.writeFileSync(`./build/${f.slice(0, -4)}.html`, result);
-
-                }
-            });
-            reloadServer.reload();
-        }
-
-    });
-
-    fs.watch('./src/public/stylesheets', (eventType, filename) =>{
-
-        if (eventType === 'rename' && path.extname(filename) === '.scss') {
-            sass.render({
-                file: `./src/public/stylesheets/${filename}`
-            }, (err, result) => {
-                if(!err) {
-                    fs.writeFile(`./build/public/stylesheets/${filename.slice(0, -5)}.css`, result.css, (err, result) => {
-                        console.log('reload');
-                        reloadServer.reload();
-                    });
-                } else {
-                    console.log(err);
-                }
-            });
-        }
-
-    });
-
-} else {
-
-    if (arg === 'init') {
-
-        fs.removeSync('./build');
-        fs.mkdirSync('./build');
-        fs.copySync('./src/public', './build/public');
-        fs.removeSync('./build/public/stylesheets');
-        fs.mkdirSync('./build/public/stylesheets');
-
-        const scssFiles = fs.readdirSync('./src/public/stylesheets');
-        scssFiles.forEach(f => {
+    return fs.remove('./build') // Remove the old build folder with contents
+        .then(() => fs.mkdir('./build')) // Create a new build folder
+        .then(() => fs.copy('./src/public', './build/public')) // Copy over the public assets
+        .then(() => fs.remove('./build/public/stylesheets')) // Delete the stylesheets (SCSS)
+        .then(() => fs.mkdir('./build/public/stylesheets')) // Create an empty stylesheets folder (CSS)
+        .then(() => fs.readdir('./src/public/stylesheets')) // Read the SCSS dir
+        .then(scssDir => Promise.all(scssDir.map(f => { // Convert SCSS to CSS write to build
             const result = sass.renderSync({
                 file: `./src/public/stylesheets/${f}`,
             });
-            fs.writeFileSync(`./build/public/stylesheets/${f.slice(0, -5)}.css`, result.css.toString());
-        });
-
-        const files = fs.readdirSync('./src');
-        files.forEach(f => {
+            console.log(`Rendered ${f}`);
+            return fs.writeFile(
+                `./build/public/stylesheets/${f.slice(0, -5)}.css`,
+                result.css.toString());
+        }))) //
+        .then(() => fs.readdir('./src')) // Read the src dir (pug files)
+        .then((pugDir) => Promise.all(pugDir.map(f => { // Convert PUG to HTML and write to build
             if (path.extname(f) === '.pug') {
-                console.log(f);
                 const result = pug.renderFile(`./src/${f}`);
-                fs.writeFile(`./build/${f.slice(0, -4)}.html`, result, (err, result) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
+                return fs.writeFile(`./build/${f.slice(0, -4)}.html`, result).
+                    then(() => {
                         console.log(`Rendered ${f}`);
-                    }
-                });
+                    });
+            } else {
+                return null;
             }
-        });
-    }
+        })))
 
 }
 
+/**
+ * Enables the development server on port 3000
+ * Does an initial render before deploying the server
+ */
+function develop() {
 
+    // Perform an initial render
+    render().then(() => { // Deploy server
+
+        console.log('Development server started');
+
+        const app = express();
+        app.use('/', express.static('build'));
+        app.listen(3000);
+
+        const reloadServer = reload(app);
+
+        const watcher = watch('./src', {recursive: true});
+
+        function _watch() { // Wait for previous render to complete before adding back change listener
+            watcher.once('change', (event, name) => {
+                console.log(`${name} triggered render`);
+                render().then(() => {
+                    reloadServer.reload();
+                    _watch();
+                });
+            });
+        }
+
+        _watch();
+
+    });
+
+}
