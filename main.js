@@ -45,13 +45,20 @@ function render() {
         .then(() => fs.mkdir('./build/public/stylesheets')) // Create an empty stylesheets folder (CSS)
         .then(() => fs.readdir('./src/public/stylesheets')) // Read the SCSS dir
         .then(scssDir => Promise.all(scssDir.map(f => { // Convert SCSS to CSS write to build
-            const result = sass.renderSync({
-                file: `./src/public/stylesheets/${f}`,
-            });
-            console.log(`Rendered ${f}`);
-            return fs.writeFile(
-                `./build/public/stylesheets/${f.slice(0, -5)}.css`,
-                result.css.toString());
+            if (path.extname(f) === '.scss') {
+                const result = sass.renderSync({
+                    file: `./src/public/stylesheets/${f}`,
+                });
+                console.log(`Rendered ${f}`);
+                return fs.writeFile(
+                    `./build/public/stylesheets/${f.slice(0, -5)}.css`,
+                    result.css.toString());
+            } else {
+                return fs.copy(`./src/public/stylesheets/${f}`,
+                    `./build/public/stylesheets/${f}`).then(() => {
+                    console.log(`Copied ${f}`);
+                });
+            }
         }))) //
         .then(() => fs.readdir('./src')) // Read the src dir (pug files)
         .then((pugDir) => Promise.all(pugDir.map(f => { // Convert PUG to HTML and write to build
@@ -64,7 +71,7 @@ function render() {
             } else {
                 return null;
             }
-        })))
+        })));
 
 }
 
