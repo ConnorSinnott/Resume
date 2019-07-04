@@ -7,77 +7,64 @@ mixin resume()
             p.left ConnorSinnott@gmail.com
         .header
             h1.name Connor Sinnott
-            h3.subtitle Express | React | Android | Electron
+            h3.subtitle Node.js | TypeScript | Express | React | Perl
         .bio
             hr
             p.
-                I grew up writing adventure games in QBasic and placing them on 3.5" floppies to force on my friends.
-            p.
-                Later in college I was exposed to more advanced languages during an Android development class. Now it's my jam!
+                After graduating from Bellevue College in 2018, I was picked up by a small Redmond based development
+                company which was struggling to maintain legacy Perl code and was seeking direction towards newer technologies. 
+                With the support of other members in the team, I steered development towards TypeScript, replacing the Apache/Perl 
+                server with Express and using Nginx to deploy different parts of the website as they became available.
             hr
-        .section.project
-            .title Project Experience
-            .project
-                h4.left DalmatianICS
-                h4.right
-                    span.url DalmatianICS.org
-                    span - Jan 2018 - Present
-                .summary
-                    p An overhaul of Eastside Fire & Rescue's Incident Command System (ICS) software.
-                    ul.notable
-                        li • Electron
-                        li • React + Redux
-                        li • Typescript
-                        li • Flow
-                        li • Jest
-                        li • Pug
-                        li • Amazon S3
-            .project
-                h4.left NotZork
-                h4.right
-                    span.url github.com/ConnorSinnott/NotZork
-                    span - July 2018 - Present
-                .summary
-                    p A online text-based adventure game creator/player
-                    ul.notable
-                        li • React + Redux
-                        li • Flow
-                        li • Serverless
-                        li • Amazon Lambda
-                        li • Amazon S3
-            .project
-                h4.left BlackBox - CodeDay2017
-                h4.right
-                    span.url github.com/ConnorSinnott/BlackBox
-                    span - Feb 2017
-                .summary
-                    p Winner of "Best Application" from CodeDay2017. A "dead man's switch" concept on Android.
-                    ul.notable
-                        li • Express
-                        li • Node.js
-                        li • Android
-                        li • Gradle
-                        li • CentOS
-                        li • Mongo
-                        li • Amazon EC2
-            .project
-                h4.left 123Launch
-                h4.right
-                    span.url github.com/ConnorSinnott/123Launch
-                    span - May 2016 - Jun 2016
-                .summary
-                    p "Dial pad" homescreen launcher widget for Android phones. Available on Google Play.
-                    ul.notable
-                        li • Android
-                        li • Gradle
-                        li • Google Play Services
-                        li • EventBus
-                        li • SQLite3
+        .section.technical_skills_summary
+            .title Technical Skills Summary
+            .summary
+                table
+                    tr
+                        td Languages & Skills:
+                        td.
+                            Node.js, TypeScript, Perl, Java, Kotlin, Python, JSX, HTML, CSS, SCSS, Pug (Jade), Template Toolkit 2, JSON, XML, Thymeleaf
+                    tr
+                        td Frameworks:
+                        td.
+                            React, Redux, jQuery, Express, Koa, Android, SpringBoot, Ktor, CGI (Perl), Jest, Electron, Celenium, Severless
+                    tr
+                        td Developer Tools:
+                        td.
+                            Git (Github & Bitbucket), JetBrains (WebStorm, IntelliJ, AndroidStudio), Visual Studio Code, DBeaver, Oracle SQL Developer
+                    tr
+                        td AWS & Cloud:
+                        td.
+                            EC2, RDS, Route53, S3, Lambda
+                    tr
+                        td Systems:
+                        td.
+                            Linux (Debian, Redhat), Windows
+                    tr
+                        td Database
+                        td.
+                            MariaDB, MySQL, Oracle, Mongo, CouchDB, SQLite
         .section.work
             .title Work Experience
             .job
+                h4.left Software Developer - Lucidoc
+                h4.right September 2018 - Present
+                .summary
+                    span. 
+                        Web-based document management and complience software. Lucidoc tracks revisions, ackowledgements, 
+                        and signatures on offical documents, as well as simplifies audits by consolidating state, federal, and private requirements into one dashboard.
+                    ul
+                        li.
+                            Switched development from Perl to TypeScript, opting for a dockerized Express application which
+                            could be deployed on AWS in the future, as well as modularizing other parts of the application
+                            such as PDF generation, so that they could be utilized within a serverless architecture.
+                        li. 
+                            Aided in the deprication of IE11 by replacing a homebrew Internet Explorer plugin, used to access the filesystem
+                            from the brower, with a thin client offering the same utility but comptiable with all browsers.
+                        li. 
+                            Represented Lucidoc at career fairs, researched candidates and conducted interviews.
                 h4.left CodeCoach - TheCoderSchool
-                h4.right Jan 2018 - Present
+                h4.right Jan 2018 - September 2018
                 .summary
                     ul
                         li Mentored and trained new coaches in proper instruction techniques.
@@ -90,7 +77,6 @@ mixin resume()
                 h4.right June 2017 - June 2018
                 .summary
                     p Elected president of Bellevue College's Computer Science Club.
-                br
             .hobby
                 h4.left Cascade Mountain Biking Community
                 h4.right May 2016 - Present
@@ -109,4 +95,4 @@ mixin resume()
                 .ed
                     h4.left Udacity - Android Development Nanodegree
                     h4.right Aug 2016
-
+                    br 

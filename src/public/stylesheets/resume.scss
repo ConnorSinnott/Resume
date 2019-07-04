@@ -40,6 +40,11 @@ body {
 .section {
   padding-left: $margin;
   padding-right: $margin;
+  clear: left;
+}
+
+.education {
+  padding-bottom: 14px;
 }
 
 .title {
@@ -57,7 +62,8 @@ body {
 .summary {
   clear: left;
   margin-left: $margin;
-  padding-top: 12px;
+  padding-top: 2px;
+  font-size: 0.9em;
 }
 
 ul {
@@ -94,4 +100,12 @@ ul {
   text-decoration: underline;
   color: #555;
   margin-right: 5px;
+}
+
+table {
+  font-size: 0.95em;
+}
+
+table tr *:first-child {
+  font-weight: bold;
 }
